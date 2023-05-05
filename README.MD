@@ -1,4 +1,4 @@
-# DAM M03 - UF6 - Aplicación "librería" y base de datos con JavaSQL
+# DAM M03 - UF6 - Aplicación "librería" y base de datos con JDBC
 
 ## Descripción
 Aplicación de consola que permite gestionar una librería. La aplicación permite realizar las siguientes operaciones:
