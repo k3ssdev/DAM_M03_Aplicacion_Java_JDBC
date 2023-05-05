@@ -30,4 +30,4 @@ La base de datos está formada por las siguientes tablas:
 Al ejecutar el proyecto, se muestra un menú con las opciones disponibles. Para seleccionar una opción, introducir el número correspondiente y pulsar `Enter`.
 
 ## Licencia
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](LICENSE.MD)
