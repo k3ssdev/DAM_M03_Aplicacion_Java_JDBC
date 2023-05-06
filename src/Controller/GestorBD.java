@@ -65,7 +65,6 @@ public class GestorBD {
 
             // Cerrar conexión y recursos
             st.close();
-            con.close();
 
         } catch (SQLException e) {
             System.out.println("Error al crear la base de datos");
@@ -76,6 +75,9 @@ public class GestorBD {
         try {
             // Crear objeto de la clase Statement
             Statement st = con.createStatement();
+
+            // Seleccionar la base de datos
+            st.executeUpdate("USE " + baseDatos);
 
             // Crear tabla autores
             st.executeUpdate("CREATE TABLE IF NOT EXISTS autores ("
@@ -362,86 +364,5 @@ public class GestorBD {
             System.out.println("Error al borrar el libro");
         }
     }
-
-    public void modificarLibro() {
-
-        try {
-            // Limpiar la consola
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-
-            // Conectar con la base de datos
-            conectar();
-
-            // Crear objeto de la clase Statement
-            Statement st = con.createStatement();
-
-            // Llamar al metodo mostrarLibros
-            mostrarLibros();
-
-            // Pedir al usuario que introduzca el id del libro a modificar
-            int id = Teclado.pideEntero("Introduce el id del libro a modificar: ");
-
-            // Pedir al usuario que introduzca el nuevo titulo del libro
-            String titulo = Teclado.pideString("Introduce el nuevo titulo del libro: ");
-
-            // Pedir al usuario que introduzca el nuevo id del autor del libro
-            mostrarAutores();
-            int id_autor = Teclado.pideEntero("Introduce el nuevo id del autor del libro: ");
-
-            // Pedir al usuario que introduzca la nueva editorial del libro
-
-            String pais = Teclado.pideString("Introduce el nuevo pais del libro:");
-
-            // Pedir al usuario que introduzca la nueva fecha de publicacion del libro
-            String genero = Teclado.pideString("Introduce el nuevo genero del libro: ");
-
-            // Modificar el libro
-            st.executeUpdate("UPDATE libros SET titulo = '" + titulo + "', id_autor = '" + id_autor + "', pais = '"
-                    + pais + "', genero = '" + genero + "' WHERE id = " + id);
-
-            // Cerrar conexión y recursos
-            st.close();
-            con.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error al modificar el libro");
-        }
-    }
-
-    public void insertarAutor() {
-
-        try {
-            // Limpiar la consola
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-
-            // Crear objeto de la clase Statement
-            Statement st = con.createStatement();
-
-            // Pedir al usuario que introduzca el nombre del autor
-            System.out.println("Introduce el nombre del autor");
-            String nombre = System.console().readLine();
-
-            // Pedir al usuario que introduzca los apellidos del autor
-            System.out.println("Introduce los apellidos del autor");
-            String apellidos = System.console().readLine();
-
-            // Pedir al usuario que introduzca la nacionalidad del autor
-            System.out.println("Introduce la nacionalidad del autor");
-            String nacionalidad = System.console().readLine();
-
-            // Insertar el autor
-            st.executeUpdate("INSERT INTO autores (nombre, apellidos, nacionalidad) VALUES ('" + nombre + "', '"
-                    + apellidos + "', '" + nacionalidad + "')");
-            
-            // Cerrar conexión y recursos
-            st.close();
-            con.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error al insertar el autor");
-        }
-    }
-
+  
 }
